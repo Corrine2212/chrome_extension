@@ -10,8 +10,8 @@ To use the extension:
 7. Make sure extension is toggled on
 
 ## Extensions
-
 - [ ] add individual delete option to each url
 - [ ] add notes section
+- [ ] ability to copy links to clipboard
 
 
