@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "version": "1.1",
-    "name": "Leads Tracker",
+    "name": "URL Tracker",
     "action": {
         "default_popup": "index.html",
         "default_icon": "url_saver_logo.png"
