@@ -1,5 +1,8 @@
 # URL Tracker - Chrome Extension
 
+![image](./images/Snapshot%202023-10-08%20at%2020.23.11.jpg)
+
+
 To use the extension:
 1. Download the ZIP
 2. Unzip the folder
