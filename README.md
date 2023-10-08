@@ -9,6 +9,9 @@ To use the extension:
 6. The extension should appear in your 'My extensions' section
 7. Make sure extension is toggled on
 
+## Extensions
 
+- [ ] add individual delete option to each url
+- [ ] add notes section
 
 
