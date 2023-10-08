@@ -1,26 +1,46 @@
 
 let myLeads = []
+let oldLeads = []
 const inputEl = document.getElementById('input-el')
 const ulEl = document.getElementById('ul-el')
-
-// function saveLead() {
-//     console.log("button clicked");
-// }
+const deleteBtn = document.getElementById('delete-btn')
+const tabBtn = document.getElementById('tab-btn')
 
 // REFACTORED
 const inputBtn = document.getElementById("input-btn")
 
-inputBtn.addEventListener("click", function () {
-    console.log("Button clicked!")
-    myLeads.push(inputEl.value) // pushing the text in the input
-    console.log(myLeads)
-    inputEl.value = ""
-    renderLeads()
+const leadsFromLocalStorage = JSON.parse(localStorage.getItem("myLeads"))
+console.log(leadsFromLocalStorage);
+
+if (leadsFromLocalStorage) {
+    myLeads = leadsFromLocalStorage
+    render(myLeads);
+}
+
+
+tabBtn.addEventListener("click", function() {
+    // console.log(tabs[0].url)
+    chrome.tabs.query(
+        {
+            active:true, 
+            currentWindow:true
+        },
+        function(tabs) {
+            myLeads.push(tabs[0].url)
+            localStorage.setItem("myLeads", JSON.stringify(myLeads))
+            render(myLeads)
+        }
+    )
+    console.log(tabs)
+    myLeads.push(tabs[0].url)
+    localStorage.setItem("myLeads", JSON.stringify(myLeads))
+    render(myLeads)
 })
 
-function renderLeads() {
+// FUNCTIONS
+function render(leads) {
     let listItems = ""
-    for (let i = 0; i < myLeads.length; i++) {
+    for (let i = 0; i < leads.length; i++) {
         // listItems += "<li>" + "<a target='_blank' href='#'>" + myLeads[i] + "</a>" + "</li>"
         // ulEl.innerHTML += "<li>" + myLeads[i] + "</li>" 
         // line above is easier to understand
@@ -35,14 +55,30 @@ function renderLeads() {
 
         listItems += `
         <li> 
-            <a target='_blank' href='${myLeads[i]}'>
-                ${myLeads[i]}
+            <a target='_blank' href='${leads[i]}'>
+                ${leads[i]}
             </a> 
         </li>
         `
-
-
     }
     ulEl.innerHTML = listItems
-
 }
+
+// EVENT LISTENERS
+
+deleteBtn.addEventListener("dblclick", function () {
+    // console.log("double click");
+    localStorage.clear()
+    myLeads = []
+    render(myLeads)
+})
+
+inputBtn.addEventListener("click", function () {
+    // console.log("Button clicked!")
+    myLeads.push(inputEl.value) // pushing the text in the input
+    console.log(myLeads)
+    inputEl.value = ""
+    localStorage.setItem("myLeads", JSON.stringify(myLeads))
+    render(myLeads)
+    console.log(localStorage.getItem("myLeads"));
+})
