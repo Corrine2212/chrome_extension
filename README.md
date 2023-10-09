@@ -15,5 +15,7 @@ To use the extension:
 - [ ] add individual delete option to each url
 - [ ] add notes section
 - [ ] ability to copy links to clipboard
+- [ ] be able to press enter to save input
+- [ ] prevent duplicate urls from appear in the list and have message pop up to say url already exists.
 
 

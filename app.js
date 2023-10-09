@@ -73,12 +73,36 @@ deleteBtn.addEventListener("dblclick", function () {
     render(myLeads)
 })
 
-inputBtn.addEventListener("click", function () {
-    // console.log("Button clicked!")
-    myLeads.push(inputEl.value) // pushing the text in the input
-    console.log(myLeads)
-    inputEl.value = ""
-    localStorage.setItem("myLeads", JSON.stringify(myLeads))
-    render(myLeads)
+// inputBtn.addEventListener("click", function () {
+//     // console.log("Button clicked!")
+//     myLeads.push(inputEl.value) // pushing the text in the input
+//     console.log(myLeads)
+//     inputEl.value = ""
+//     localStorage.setItem("myLeads", JSON.stringify(myLeads))
+//     render(myLeads)
+//     console.log(localStorage.getItem("myLeads"));
+// })
+
+function addLeadAndRender() {
+    let inputText = inputEl.value.trim()
+    if (inputText !== "") {
+        if (!inputText.startsWith("https://") && (!inputText.startsWith("http://"))) {
+            inputText= "https://" + inputText
+        } 
+    }
+
+    myLeads.push(inputText);
+    inputEl.value = "";
+    localStorage.setItem("myLeads", JSON.stringify(myLeads));
+    render(myLeads);
     console.log(localStorage.getItem("myLeads"));
-})
+}
+
+inputBtn.addEventListener("click", addLeadAndRender);
+
+inputEl.addEventListener("keyup", function(event) {
+    if (event.key === "Enter") {
+        addLeadAndRender();
+    }
+});
+
