@@ -1,5 +1,7 @@
 # URL Tracker - Chrome Extension
 
+Quickly save pages and links via chrome extension and view them later. 
+
 ![image](./images/Snapshot%202023-10-08%20at%2020.23.11.jpg)
 
 To use the extension:
